@@ -12,7 +12,13 @@ export class UsuarioService {
 
   getUsers() {
     return this.http
-      .get(`${this._url}/users?per_page=6`)
+      .get(`${this._url}/users?per_page=6&delay=3`)
+      .pipe(map((resp: any) => resp['data']));
+  }
+
+  getUserById(id: string) {
+    return this.http
+      .get(`${this._url}/users/${id}`)
       .pipe(map((resp: any) => resp['data']));
   }
 }
